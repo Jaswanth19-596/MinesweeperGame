@@ -14,7 +14,8 @@ public class GamePlay {
         System.out.println(message);
     }
 
-    public void displayBoard(int [][]board){
+
+    public void displayBoard(int[][] board) {
         int rows = board.length;
         int cols = board[0].length;
 
@@ -23,7 +24,7 @@ public class GamePlay {
         for (int j = 0; j < cols; j++) {
             System.out.printf(" %d  ", j);
         }
-      
+
         System.out.println();
         printSeparator();
 
@@ -59,6 +60,16 @@ public class GamePlay {
         int col = sc.nextInt();
 
         return new int[]{row, col};
+    }
+
+    public int getDifficulty(){
+        System.out.println("Enter the Difficulty : (1, 2, 3)");
+        int difficulty = sc.nextInt();
+        while(difficulty > 3 || difficulty<0){
+            System.out.println("Enter the Difficulty within these three values : (1, 2, 3)");
+            difficulty = sc.nextInt();
+        }
+        return difficulty;
     }
 
     private void closeScanner(){
