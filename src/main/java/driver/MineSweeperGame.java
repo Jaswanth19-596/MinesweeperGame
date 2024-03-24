@@ -1,7 +1,11 @@
+package src.main.java.driver;
+
+import src.main.java.gameplay.GamePlay;
+
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Minesweeper {
+public class MineSweeperGame {
 
     static int mines = 0;
 
@@ -235,6 +239,9 @@ public class Minesweeper {
 
 
     public static void main(String[] args) {
+
+        GamePlay g = new GamePlay();
+
         int difficulty = 0;
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the Difficulty Level You Want : 1 2 3");
@@ -345,3 +352,4 @@ public class Minesweeper {
         updateGameBoard(gameBoard, row+1, col+1, visited, resultantBoard, explored);
     }
 }
+
