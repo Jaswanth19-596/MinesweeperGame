@@ -7,7 +7,6 @@ public class Board {
     private int rows;
     private int cols;
     private int totalMines;
-    private int difficulty;
 
     public Board(int rows, int cols, int totalMines, int difficulty){
         this.rows = rows;
@@ -15,8 +14,10 @@ public class Board {
         this.totalMines = totalMines;
         this.mineField = new int[rows][cols];
         this.revealed = new boolean[rows][cols];
-        this.difficulty = difficulty;
         this.finalState = new int[rows][cols];
+
+
+        System.out.println(this.totalMines);
     }
 
     public int getTotalMines(){
@@ -81,24 +82,6 @@ public class Board {
     }
 
     public void generateMinesForBoard() {
-        int totalMines = 0;
-
-        // Set the number of mines based on difficulty level
-        switch (difficulty) {
-            case 0: // EASY
-                totalMines = rows;
-                break;
-            case 1: // MEDIUM
-                totalMines = rows + 1 * 3;
-                break;
-            case 2: // HARD
-                totalMines = rows + 2 * 3;
-                break;
-            default:
-                System.out.println("Invalid difficulty level. Setting to EASY by default.");
-                totalMines = rows;
-                break;
-        }
 
         // Populate the board with cells
         int minesPlaced = 0;

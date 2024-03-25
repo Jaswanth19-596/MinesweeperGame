@@ -23,13 +23,13 @@ public class MineSweeperGame {
 
         // Set the number of mines based on difficulty level
         switch (difficulty) {
-            case 0: // EASY
+            case 1: // EASY
                 board = new EasyBoard(dimension, dimension);
                 break;
-            case 1: // MEDIUM
+            case 2: // MEDIUM
                 board = new MediumBoard(dimension, dimension);
                 break;
-            case 2: // HARD
+            case 3: // HARD
                 board = new HardBoard(dimension, dimension);
                 break;
             default:
@@ -41,8 +41,9 @@ public class MineSweeperGame {
         board.generateMinesForBoard();
 
         // Generates the resultant board
-        board.generateResultantBoard();        
-        g.displayBoard(board.getBoardFinalState());
+        board.generateResultantBoard();      
+        
+        
         while(true){
             
             // Displays the board to the user
@@ -71,10 +72,9 @@ public class MineSweeperGame {
             int explored = board.getExploredCount(board.getRevealed());
             
 
-            System.out.println(dimension * dimension - explored + " "+board.getTotalMines());
             // If the user explored all the cells -> User win
             if(dimension * dimension - explored == board.getTotalMines()){
-                g.displayMessage(g.winningStrings.get(1));
+                g.displayMessage(g.winningStrings.get(0));
                 break;
             }
         }
