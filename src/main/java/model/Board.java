@@ -7,7 +7,6 @@ public class Board {
     private int rows;
     private int cols;
     private int totalMines;
-    private int remainingCells;
     private int difficulty;
 
     public Board(int rows, int cols, int totalMines, int difficulty){
@@ -16,36 +15,26 @@ public class Board {
         this.totalMines = totalMines;
         this.mineField = new int[rows][cols];
         this.revealed = new boolean[rows][cols];
-        this.remainingCells = rows * cols - totalMines;
         this.difficulty = difficulty;
         this.finalState = new int[rows][cols];
     }
 
-    // private void generateMinesweeperBoard(){
-    
-    //     // Populate the board with cells
-    //     int minesPlaced = 0;
-    //     while (minesPlaced < totalMines) {
-    //         int randRow = (int) (Math.random() * rows);
-    //         int randCol = (int) (Math.random() * cols);
-            
-    //         if (mineField[randRow][randCol] != 100) { // If the cell is not already a mine
-    //             mineField[randRow][randCol] = 100; // Mine
-    //             minesPlaced++;
-    //         }
-    //     }
+    public int getTotalMines(){
+        return totalMines;
+    }
 
-    //     // Fill remaining cells with empty cells
-    //     for (int i = 0; i < rows; i++) {
-    //         for (int j = 0; j < cols; j++) {
-    //             if (mineField[i][j] != 100) {
-    //                 mineField[i][j] = 0; // Empty cell
-    //             }
-    //         }
-    //     }
 
-    // }
-
+    public int getExploredCount(boolean [][]explored){
+        int count = 0;
+        for(int i = 0;i<explored.length;i++){
+            for(int j = 0;j<explored[0].length;j++){
+                if(explored[i][j] == true){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 
 
     // Generates Resultatnt Board based on the Mines placed in the Original Board.
@@ -176,6 +165,7 @@ public class Board {
         updateGameBoard(row+1, col+1, visited);
     }
 
+
     public int[][] getBoardFinalState(){
         return finalState;
     }
@@ -184,4 +174,7 @@ public class Board {
         return mineField;
     }
 
+    public boolean [][]getRevealed(){
+        return revealed;
+    }
 }

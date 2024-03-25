@@ -3,11 +3,15 @@ import java.util.*;
 
 public class GamePlay {
     private Scanner sc;
+    public ArrayList<String> winningStrings;
 
     private final int boardDimension = 9;
 
     public GamePlay(){
         sc = new Scanner(System.in);
+        winningStrings = new ArrayList<>();
+        winningStrings.add("Wooohoooo !!! You have won the game!!");
+        winningStrings.add("Chose the wrong cell......!! You Lost");
     }
 
     public void displayMessage(String message){
@@ -54,10 +58,16 @@ public class GamePlay {
         System.out.println();
     }
 
-    private int[] getPlayerMove(){
+    public int[] getPlayerMove(){
+
         System.out.println("Enter Your Next Move : (row col)");
         int row = sc.nextInt();
         int col = sc.nextInt();
+
+        // Recursively call the same function till user enters correct cell numbers
+        if(row < 0 || row >= 9 || col < 0 || col >= 9){
+            return getPlayerMove();
+        }
 
         return new int[]{row, col};
     }
@@ -65,14 +75,14 @@ public class GamePlay {
     public int getDifficulty(){
         System.out.println("Enter the Difficulty : (1, 2, 3)");
         int difficulty = sc.nextInt();
-        while(difficulty > 3 || difficulty<0){
+        while(difficulty > 3 || difficulty<=0){
             System.out.println("Enter the Difficulty within these three values : (1, 2, 3)");
             difficulty = sc.nextInt();
         }
         return difficulty;
     }
 
-    private void closeScanner(){
+    public void closeScanner(){
         sc.close();
     }
 }
